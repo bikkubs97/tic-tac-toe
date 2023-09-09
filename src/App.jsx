@@ -34,6 +34,15 @@ function App() {
     }
   }
 
+  function handleCellClick(index) {
+    if (cells[index] === "" && !winningMessage) {
+      const newCells = [...cells];
+      newCells[index] = go;
+      setCells(newCells);
+      setGo(go === "circle" ? "cross" : "circle"); // Toggle between 'circle' and 'cross'
+    }
+  }
+
   return (
     <div className="app">
       <h1>Tic Tac Toe!</h1>
@@ -49,6 +58,7 @@ function App() {
               setGo={setGo}
               cells={cells}
               winningMessage={winningMessage}
+              onClick={() => handleCellClick(index)} // Add click handler
             />
           );
         })}
